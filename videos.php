@@ -57,11 +57,12 @@
 
 	
 	<?php
+	error_reporting(0);
 	require_once ('dbcon.php');
 	// selecting title for specific movie
 	$sql = 'SELECT id_video,title,url,description FROM video';
 	$stmt = $link->prepare($sql);
-	$stmt->bind_param('i', $userID);
+	$stmt->bind_param('i', $uvideo);
 	$stmt->execute();
 	$stmt->bind_result($uID, $vtitle, $vurl, $dscp);
 	
@@ -69,7 +70,6 @@
 		$url = $vurl;
 		// Output: C4kxS1ksqtw from youtube videos
 		parse_str( parse_url( $url, PHP_URL_QUERY ), $my_array_of_vars );
-		preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#", $link, $matches);
 		echo '
 		<div class="box-white col-sm-4"><br>
 		<h4>'.$vtitle.'</h4>
