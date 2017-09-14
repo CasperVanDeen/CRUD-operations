@@ -17,7 +17,7 @@
 
 <body style="background:url(img/bg-blurred.jpg); background-repeat:no-repeat; background-size:cover; background-origin:content-box" >
 <?php
-
+error_reporting(0);
 if(!empty(filter_input(INPUT_POST, 'submit'))) {
 
 	require_once('dbcon.php');
@@ -39,11 +39,12 @@ if(!empty(filter_input(INPUT_POST, 'submit'))) {
 		$_SESSION['uid'] = $uid;
 		$_SESSION['un'] = $un;
 		echo'<div class="alert alert-success">Hello '.$un.'</div>
-		
-		';
-		header('Location:videos.php');
-		exit;
-	}
+		';?>
+		<script type="text/javascript">
+setTimeout(function(){window.location.href='videos.php'}, 0000);
+</script>
+<?php	
+    }
 	else {
 		echo '<div class="alert alert-danger alert-dismissable">
   <a href="index.php" class="close" data-dismiss="alert" aria-label="close">&times;</a>
